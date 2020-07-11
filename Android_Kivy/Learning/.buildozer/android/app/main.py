@@ -18,79 +18,34 @@ from kivy.uix.screenmanager import ScreenManager, Screen
    
 # You can create your kv code in the Python file 
 Builder.load_string(""" 
-<ScreenOne>: 
+<ScreenOne>:
+    label_id : my_label 
     BoxLayout:
         orientation: 'vertical'
         Label:
-            text: "This is Screen 1"
+            text: "0"
+            id : my_label
             size_hint : 1, 0.75
             background_color : 1, 0, 0, 1
             text_color : 1, 1, 1, 1
         Button: 
-            text: "Go to Screen 2"
+            text: "+"
             size_hint: 1, 0.25 
             background_color : 0, 0, 1, 1
             text_color : 1, 1, 1, 1 
             on_press: 
                 # You can define the duration of the change 
-                # and the direction of the slide 
-                root.manager.transition.direction = 'left' 
-                root.manager.transition.duration = 0.25 
-                root.manager.current = 'screen_two' 
-   
-<ScreenTwo>: 
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            text: "This is Screen 2"
-            size_hint : (1,0.75)
-            background_color : 0,1,0,1
-            text_color : 1,1,1,1
-        Button: 
-            text: "Go to Screen 3"
-            size_hint: (1,0.25) 
-            background_color : 1, 0, 0, 1
-            text_color : 1,1,1,1 
-            on_press: 
-                # You can define the duration of the change 
-                # and the direction of the slide 
-                root.manager.transition.direction = 'left' 
-                root.manager.transition.duration = 0.25 
-                root.manager.current = 'screen_three' 
-  
-<ScreenThree>: 
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            text: "This is Screen 3"
-            size_hint : (1,0.75)
-            background_color : 0,0,1,1
-            text_color : 1,1,1,1
-        Button: 
-            text: "Go to Screen 1"
-            size_hint: (1,0.25) 
-            background_color : 0, 1, 0, 1 
-            on_press: 
-                # You can define the duration of the change 
-                # and the direction of the slide 
-                root.manager.transition.direction = 'left' 
-                root.manager.transition.duration = 0.25 
-                root.manager.current = 'screen_one' 
-  
-
-  
-  
+                # and the direction of the slide
+                root.increase()
 """) 
    
 # Create a class for all screens in which you can include 
 # helpful methods specific to that screen 
-class ScreenOne(Screen): 
-    pass
-   
-class ScreenTwo(Screen): 
-    pass
-  
-class ScreenThree(Screen): 
+class ScreenOne(Screen):
+    def increase(self):
+        txt=self.label_id.text
+        new_num=int(txt)+1
+        self.label_id.text=str(new_num) 
     pass
 
    
@@ -101,12 +56,10 @@ screen_manager = ScreenManager()
 # Add the screens to the manager and then supply a name 
 # that is used to switch screens 
 screen_manager.add_widget(ScreenOne(name ="screen_one")) 
-screen_manager.add_widget(ScreenTwo(name ="screen_two")) 
-screen_manager.add_widget(ScreenThree(name ="screen_three"))
   
 # Create the App class 
 class ScreenApp(App): 
-    def build(self): 
+    def build(self):
         return screen_manager 
   
 # run the app  

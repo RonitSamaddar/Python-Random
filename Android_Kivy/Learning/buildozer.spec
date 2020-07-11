@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = Multi_Screen
+title = Button_Interactivity
 
 # (str) Package name
-package.name = multiscreen
+package.name = buttoninteractivity
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.multiscreen
+package.domain = org.buttoninteractivity
 
 # (str) Source code where the main.py live
 source.dir = .
