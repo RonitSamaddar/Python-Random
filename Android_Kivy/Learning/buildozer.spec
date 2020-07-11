@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = Buttons(BOX_LAYOUT)
+title = Multi_Screen
 
 # (str) Package name
-package.name = buttonsboxlayout
+package.name = multiscreen
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.buttonsboxlayout
+package.domain = org.multiscreen
 
 # (str) Source code where the main.py live
 source.dir = .
