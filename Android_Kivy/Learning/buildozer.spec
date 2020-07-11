@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = Hello Kivy(IMAGE)
+title = Buttons(BOX_LAYOUT)
 
 # (str) Package name
-package.name = hellokivyimage
+package.name = buttonsboxlayout
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.hellokivyimage
+package.domain = org.buttonsboxlayout
 
 # (str) Source code where the main.py live
 source.dir = .

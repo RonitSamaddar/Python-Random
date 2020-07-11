@@ -1,14 +1,32 @@
+import kivy
+import random
+
 from kivy.app import App
-from kivy.uix.image import Image
+from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
 
-class MainApp(App):
+red = [1,0,0,1]
+green = [0,1,0,1]
+blue =  [0,0,1,1]
+purple = [1,0,1,1]
+
+class HBoxLayoutExample(App):
     def build(self):
-        img = Image(source='cat.jpg',
-                    size_hint=(1, 0.5),
-                    pos_hint={'center_x':.5, 'center_y':.5})
+        layout = BoxLayout(padding=0,orientation='vertical')
+        colors = [[1,0,0,1], [0,1,0,1],[0,0,1,1],[0,1,1,1],[1,1,0,1]]
+        #each color is defined as [r,g,b,a]
 
-        return img
+        for i in range(5):
+            c=random.choice(colors)
+            colors.remove(c)
+            btn = Button(text="Button #%s" % (i+1),
+                         background_color=c,
+                         size_hint=(1,(5-i)/15)
+                         )
 
-if __name__ == '__main__':
-    app = MainApp()
+            layout.add_widget(btn)
+        return layout
+
+if __name__ == "__main__":
+    app = HBoxLayoutExample()
     app.run()
