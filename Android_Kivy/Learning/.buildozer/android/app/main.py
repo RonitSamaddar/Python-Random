@@ -1,13 +1,13 @@
 from kivy.app import App
-from kivy.uix.label import Label
+from kivy.uix.image import Image
 
 class MainApp(App):
     def build(self):
-        label = Label(text='Hello from Kivy',
-                      size_hint=(.5, .5),
-                      pos_hint={'center_x': .5, 'center_y': .5})
+        img = Image(source='cat.jpg',
+                    size_hint=(1, 0.5),
+                    pos_hint={'center_x':.5, 'center_y':.5})
 
-        return label
+        return img
 
 if __name__ == '__main__':
     app = MainApp()
