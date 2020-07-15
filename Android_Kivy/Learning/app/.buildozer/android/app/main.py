@@ -1,5 +1,5 @@
 import os
-
+import time
 
 # Program to Show how to create a switch  
 # import kivy module     
@@ -17,8 +17,9 @@ from kivy.lang import Builder
 # The screen manager is a widget 
 # dedicated to managing multiple screens for your application. 
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.utils import platform
 
-#from android.permissions import request_permissions, Permission  
+
    
 # You can create your kv code in the Python file 
 Builder.load_string(""" 
@@ -42,10 +43,16 @@ Builder.load_string("""
                 root.manager.transition.duration = 0.25 
                 root.manager.current = 'screen_two'
 <ScreenTwo>:
+    label_id : camera 
     BoxLayout:
         orientation: 'vertical'
+        Camera:
+            id: camera
+            resolution : (640,480)
+            play: False
         ToggleButton:
             text: 'Play'
+            on_press: camera.play = not camera.play
             size_hint_y: None
             height: '48dp'
         Button: 
@@ -59,22 +66,22 @@ Builder.load_string("""
                 root.capture()
 
 <ScreenThree>:
+    image_id : img
     BoxLayout:
         orientation: 'vertical'
         Image:
+            id : img
             source : "IMG.png"
             size_hint: 1, 0.75
         Button: 
-            text: "HOME"
+            text: "EXIT"
             size_hint: 1, 0.25 
             background_color : 1, 0, 0, 1
             text_color : 1, 1, 1, 1 
             on_press: 
                 # You can define the duration of the change 
                 # and the direction of the slide
-                root.manager.transition.direction = 'left' 
-                root.manager.transition.duration = 0.25 
-                root.manager.current = 'screen_one'
+                root.app_exit()
 """) 
    
 # Create a class for all screens in which you can include 
@@ -83,18 +90,38 @@ class ScreenOne(Screen):
     pass
 
 class ScreenTwo(Screen):
+
+    #staticmethod
+    #def on_enter(self):
+        #self._request_android_permissions()
+    #def is_android(self):
+    #    return platform == 'android'
+
+    """def _request_android_permissions(self):
+        
+        #Requests CAMERA permission on Android.
+
+        if not self.is_android():
+            return
+        from android.permissions import request_permission, Permission
+        request_permission(Permission.CAMERA)"""
     def capture(self):
         '''
         Function to capture the images and give them the names
         according to their captured time and date.
         '''
-        #camera = self.ids['camera']
-        #camera.export_to_png("IMG.png")
+        camera = self.ids['camera']
+        camera.export_to_png("IMG.png")
         self.manager.transition.direction = 'left' 
         self.manager.transition.duration = 0.25 
         self.manager.current = 'screen_three' 
     pass
-class ScreenThree(Screen): 
+class ScreenThree(Screen):
+    def on_enter(self):
+            image=self.ids['img']
+            image.reload()
+    def app_exit(self):
+        exit(0)
     pass
 
    
@@ -111,9 +138,9 @@ screen_manager.add_widget(ScreenThree(name ="screen_three"))
 # Create the App class 
 class ScreenApp(App): 
     def build(self):
-        #request_permissions([Permission.WRITE_EXTERNAL_STORAGE])
         return screen_manager 
   
 # run the app  
 sample_app = ScreenApp() 
-sample_app.run() 
+sample_app.run()
+

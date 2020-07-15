@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = Button_Interactivity
+title = YOLO
 
 # (str) Package name
-package.name = buttoninteractivity
+package.name = yolo
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.buttoninteractivity
+package.domain = org.yolo
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -36,7 +36,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy
+requirements = python3,kivy,plyer,android	
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -97,7 +97,7 @@ fullscreen = 0
 #android.sdk = 20
 
 # (str) Android NDK version to use
-#android.ndk = 19b
+#android.ndk = 19
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 #android.ndk_api = 21
